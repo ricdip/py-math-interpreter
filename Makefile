@@ -40,3 +40,8 @@ tests:
 	$(PYTHONTESTMOD) $(UNITTESTPARSER)
 	$(PYTHONTESTMOD) $(UNITTESTINTERPRETER)
 	$(PYTHONTESTMOD) $(INTEGRATIONTESTALLMOD)
+
+.PHONY: format
+format:
+	fd --type f -e py | xargs black
+

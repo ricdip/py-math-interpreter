@@ -23,7 +23,7 @@ class TestLexerParserInterpreter(unittest.TestCase):
         text = "1+2+3+4"
         tokens = Lexer(text).scan()
         ast = Parser(tokens).parse()
-        output = Interpreter(ast).interpret().data
+        output = Interpreter(ast).interpret().value
         result = 10
         self.assertEqual(output, result)
 
@@ -31,7 +31,7 @@ class TestLexerParserInterpreter(unittest.TestCase):
         text = "1-2-3-4"
         tokens = Lexer(text).scan()
         ast = Parser(tokens).parse()
-        output = Interpreter(ast).interpret().data
+        output = Interpreter(ast).interpret().value
         result = -8
         self.assertEqual(output, result)
 
@@ -39,7 +39,7 @@ class TestLexerParserInterpreter(unittest.TestCase):
         text = "1*2*3*4"
         tokens = Lexer(text).scan()
         ast = Parser(tokens).parse()
-        output = Interpreter(ast).interpret().data
+        output = Interpreter(ast).interpret().value
         result = 24
         self.assertEqual(output, result)
 
@@ -47,7 +47,7 @@ class TestLexerParserInterpreter(unittest.TestCase):
         text = "1/2/3/4"
         tokens = Lexer(text).scan()
         ast = Parser(tokens).parse()
-        output = Interpreter(ast).interpret().data
+        output = Interpreter(ast).interpret().value
         result = 0.04166
         self.assertAlmostEqual(output, result, 4)
 
@@ -55,7 +55,7 @@ class TestLexerParserInterpreter(unittest.TestCase):
         text = "+++++2"
         tokens = Lexer(text).scan()
         ast = Parser(tokens).parse()
-        output = Interpreter(ast).interpret().data
+        output = Interpreter(ast).interpret().value
         result = 2
         self.assertEqual(output, result)
 
@@ -63,7 +63,7 @@ class TestLexerParserInterpreter(unittest.TestCase):
         text = "-----2"
         tokens = Lexer(text).scan()
         ast = Parser(tokens).parse()
-        output = Interpreter(ast).interpret().data
+        output = Interpreter(ast).interpret().value
         result = -2
         self.assertEqual(output, result)
 
@@ -71,7 +71,7 @@ class TestLexerParserInterpreter(unittest.TestCase):
         text = "----2"
         tokens = Lexer(text).scan()
         ast = Parser(tokens).parse()
-        output = Interpreter(ast).interpret().data
+        output = Interpreter(ast).interpret().value
         result = 2
         self.assertEqual(output, result)
 
@@ -79,7 +79,7 @@ class TestLexerParserInterpreter(unittest.TestCase):
         text = "2"
         tokens = Lexer(text).scan()
         ast = Parser(tokens).parse()
-        output = Interpreter(ast).interpret().data
+        output = Interpreter(ast).interpret().value
         result = 2
         self.assertEqual(output, result)
 
@@ -88,6 +88,6 @@ class TestLexerParserInterpreter(unittest.TestCase):
         text = "1 - 2 * 3 / 4 + (1.5 + 2.5 * 4)"
         tokens = Lexer(text).scan()
         ast = Parser(tokens).parse()
-        output = Interpreter(ast).interpret().data
+        output = Interpreter(ast).interpret().value
         result = 11.0
         self.assertAlmostEqual(output, result)

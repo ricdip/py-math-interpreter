@@ -1,11 +1,11 @@
 from .model.characters import (
-    WHITESPACE,
+    WHITESPACES,
     DIGITS,
     POINT,
     PLUS,
     MINUS,
-    MULTIPLY,
-    DIVIDE,
+    ASTERISK,
+    SLASH,
     LPAR,
     RPAR,
 )
@@ -34,7 +34,7 @@ class Lexer:
 
     def generate_tokens(self) -> None:
         while self.curr_char != None:
-            if self.curr_char in WHITESPACE:
+            if self.curr_char in WHITESPACES:
                 self.next()
             elif self.curr_char in DIGITS:
                 self.tokens.append(self.generate_number())
@@ -42,10 +42,10 @@ class Lexer:
                 self.tokens.append(self.generate_plus())
             elif self.curr_char in MINUS:
                 self.tokens.append(self.generate_minus())
-            elif self.curr_char in MULTIPLY:
-                self.tokens.append(self.generate_multiply())
-            elif self.curr_char in DIVIDE:
-                self.tokens.append(self.generate_divide())
+            elif self.curr_char in ASTERISK:
+                self.tokens.append(self.generate_asterisk())
+            elif self.curr_char in SLASH:
+                self.tokens.append(self.generate_slash())
             elif self.curr_char in LPAR:
                 self.tokens.append(self.generate_lpar())
             elif self.curr_char in RPAR:
@@ -67,7 +67,7 @@ class Lexer:
         if points_counter > 1:
             raise RuntimeError(f"Illegal number '{integer_str}'")
 
-        return Token(TokenType.NUM, integer_str)
+        return Token(TokenType.NUMBER, integer_str)
 
     def generate_plus(self) -> Token:
         self.next()
@@ -77,13 +77,13 @@ class Lexer:
         self.next()
         return Token(TokenType.MINUS, MINUS)
 
-    def generate_multiply(self) -> Token:
+    def generate_asterisk(self) -> Token:
         self.next()
-        return Token(TokenType.MULTIPLY, MULTIPLY)
+        return Token(TokenType.ASTERISK, ASTERISK)
 
-    def generate_divide(self) -> Token:
+    def generate_slash(self) -> Token:
         self.next()
-        return Token(TokenType.DIVIDE, DIVIDE)
+        return Token(TokenType.SLASH, SLASH)
 
     def generate_lpar(self) -> Token:
         self.next()

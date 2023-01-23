@@ -12,7 +12,7 @@ class AddNode:
 
 
 @dataclass
-class SubtNode:
+class SubtractNode:
     left: "AST"
     right: "AST"
 
@@ -21,7 +21,7 @@ class SubtNode:
 
 
 @dataclass
-class MultNode:
+class MultiplyNode:
     left: "AST"
     right: "AST"
 
@@ -30,7 +30,7 @@ class MultNode:
 
 
 @dataclass
-class DivNode:
+class DivideNode:
     left: "AST"
     right: "AST"
 
@@ -40,26 +40,26 @@ class DivNode:
 
 @dataclass
 class PlusNode:
-    data: "AST"
+    value: "AST"
 
     def __repr__(self) -> str:
-        return f"(+{self.data})"
+        return f"(+{self.value})"
 
 
 @dataclass
 class MinusNode:
-    data: "AST"
+    value: "AST"
 
     def __repr__(self) -> str:
-        return f"(-{self.data})"
+        return f"(-{self.value})"
 
 
 @dataclass
-class NumNode:
-    data: str
+class NumberNode:
+    value: str
 
     def __repr__(self) -> str:
-        return f"{self.data}"
+        return f"{self.value}"
 
 
-AST = Union[AddNode, SubtNode, MultNode, DivNode, PlusNode, MinusNode, NumNode]
+AST = Union[AddNode, SubtractNode, MultiplyNode, DivideNode, PlusNode, MinusNode, NumberNode]

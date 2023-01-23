@@ -2,8 +2,8 @@ from dataclasses import dataclass
 
 
 @dataclass
-class NumValue:
-    data: int | float
+class NumberValue:
+    value: int | float
 
     def __repr__(self) -> str:
-        return str(self.data)
+        return str(self.value)

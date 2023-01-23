@@ -1,12 +1,12 @@
 from .model.token import Token, TokenType
 from .model.ast import (
     AddNode,
-    SubtNode,
-    MultNode,
-    DivNode,
+    SubtractNode,
+    MultiplyNode,
+    DivideNode,
     PlusNode,
     MinusNode,
-    NumNode,
+    NumberNode,
     AST,
 )
 from .lexer import Lexer
@@ -57,30 +57,30 @@ class Parser:
                 result = AddNode(result, self.term())
             elif self.curr_token.type == TokenType.MINUS:
                 self.next()
-                result = SubtNode(result, self.term())
+                result = SubtractNode(result, self.term())
         return result
 
     # T -> F * F | F / F | F
     def term(self) -> AST:
         result = self.factor()
         while self.curr_token != None and self.curr_token.type in (
-            TokenType.MULTIPLY,
-            TokenType.DIVIDE,
+            TokenType.ASTERISK,
+            TokenType.SLASH,
         ):
-            if self.curr_token.type == TokenType.MULTIPLY:
+            if self.curr_token.type == TokenType.ASTERISK:
                 self.next()
-                result = MultNode(result, self.factor())
-            elif self.curr_token.type == TokenType.DIVIDE:
+                result = MultiplyNode(result, self.factor())
+            elif self.curr_token.type == TokenType.SLASH:
                 self.next()
-                result = DivNode(result, self.factor())
+                result = DivideNode(result, self.factor())
         return result
 
     # F -> num | -F | +F | (E)
     def factor(self) -> AST:
         token = self.curr_token
-        if token != None and token.type == TokenType.NUM:
+        if token != None and token.type == TokenType.NUMBER:
             self.next()
-            return NumNode(token.value)
+            return NumberNode(token.value)
         elif token != None and token.type == TokenType.PLUS:
             self.next()
             return PlusNode(self.factor())

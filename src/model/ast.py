@@ -62,4 +62,6 @@ class NumberNode:
         return f"{self.value}"
 
 
-AST = Union[AddNode, SubtractNode, MultiplyNode, DivideNode, PlusNode, MinusNode, NumberNode]
+AST = Union[
+    AddNode, SubtractNode, MultiplyNode, DivideNode, PlusNode, MinusNode, NumberNode
+]

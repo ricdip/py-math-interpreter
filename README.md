@@ -2,14 +2,14 @@
 A simple math expression interpreter written in Python for learning purposes.
 
 ## Interpreter structure
-- **Lexer**: performs the lexical analysis, converting a sequence of characters into a sequence of lexical tokens. A lexical token or token is a string with an assigned and thus identified meaning. It is structured as a pair consisting of a token name and an optional token value.
+- **Lexer**: performs the *lexical analysis*, converting a sequence of characters into a sequence of lexical tokens. A lexical token or token is a string with an assigned and thus identified meaning. It is structured as a pair consisting of a token name and an optional token value.
 
-- **Parser**: performs the syntax analysis, uses the stream of tokens to check the syntactic structure of the input and generate the AST (Abstract Syntax Tree).
+- **Parser**: performs the *syntax analysis*. Uses the stream of tokens to check the syntactic structure of the input and generate the AST (Abstract Syntax Tree). The implemented parser is a **Recursive Descent Parser**: top-down parser built from a set of mutually recursive functions where each function implements one of the non-terminals of the grammar.
 
 - **Interpreter**: interprets the AST on the fly (without compiling it) and produces the result of the mathematical expression.
 
 ## Execute the program
-### Main (an example)
+### Main (executes an example)
 ```bash
 user@host:~$ make run_main
 ```

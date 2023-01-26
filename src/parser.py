@@ -13,8 +13,8 @@ from .lexer import Lexer
 
 
 """
-Recursive Descent Parser: top-down parser built form a set of mutually recursive functions where each function
-implements one of the non-terminals of the grammar. Main limitations: they only work on grammars that avoid Left Recursion.
+Recursive Descent Parser: top-down parser built from a set of mutually recursive functions where each function
+implements one of the non-terminals of the grammar. Main limitation: they only work on grammars that avoid Left Recursion.
 """
 
 

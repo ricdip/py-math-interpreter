@@ -11,7 +11,7 @@ def main():
     # syntax analysis: tokens: List[Token] -> ast: AST (Abstract Syntax Tree)
     parser = Parser(tokens)
     ast = parser.parse()
-    # interpretation: ast: AST -> output: NumOutput (wrapper for calculation result: int | float)
+    # interpretation: ast: AST -> output: NumberValue (wrapper for calculation result: int | float)
     interpreter = Interpreter(ast)
     output = interpreter.interpret()
 

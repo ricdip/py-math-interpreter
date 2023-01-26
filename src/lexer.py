@@ -15,7 +15,7 @@ from .model.token import Token, TokenType
 class Lexer:
     def __init__(self, text: str) -> None:
         if len(text) == 0:
-            raise RuntimeError("Empty text")
+            raise RuntimeError("Empty input text")
         self.text = iter(text)
         self.curr_char = None
         self.tokens = []

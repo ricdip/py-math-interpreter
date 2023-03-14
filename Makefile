@@ -1,56 +1,37 @@
-# config
-PYTHON = python
-PYTHONMOD = $(PYTHON) -m
-PYTHONTESTMOD = $(PYTHONMOD) unittest
-
-BASE = src
-BASETEST = $(BASE).tests
-MAIN = $(BASE).main
-LEXER = $(BASE).lexer
-PARSER = $(BASE).parser
-INTERPRETER = $(BASE).interpreter
-
-UNITTEST = $(BASETEST).unit_tests
-UNITTESTLEXER = $(UNITTEST).lexer_test
-UNITTESTPARSER = $(UNITTEST).parser_test
-UNITTESTINTERPRETER = $(UNITTEST).interpreter_test
-
-INTEGRATIONTEST = $(BASETEST).integration_tests
-INTEGRATIONTESTALLMOD = $(BASETEST).integration_tests.lexer_parser_interpreter_test
+include config.mk
 
 .DEFAULT_GOAL := help
 
 # help
 .SILENT: help
-.PHONY: help # Display this help message
+.PHONY: help # display this help message
 help:
 	@grep -E '^.PHONY:.+#.+' Makefile | sed 's/.PHONY: //' | awk -F ' # ' '{printf "%-20s %s\n", $$1, $$2}'
 
-
 # main
-.PHONY: run_main # Execute example
+.PHONY: run_main # execute example
 run_main:
 	$(PYTHONMOD) $(MAIN)
 
-.PHONY: run_lexer # Execute Lexer
+.PHONY: run_lexer # execute Lexer
 run_lexer:
 	$(PYTHONMOD) $(LEXER)
 
-.PHONY: run_parser # Execute Parser
+.PHONY: run_parser # execute Parser
 run_parser:
 	$(PYTHONMOD) $(PARSER)
 
-.PHONY: run_interpreter # Execute Interpreter
+.PHONY: run_interpreter # execute Interpreter
 run_interpreter:
 	$(PYTHONMOD) $(INTERPRETER)
 
-.PHONY: tests # Execute all tests
+.PHONY: tests # execute all tests
 tests:
 	$(PYTHONTESTMOD) $(UNITTESTLEXER)
 	$(PYTHONTESTMOD) $(UNITTESTPARSER)
 	$(PYTHONTESTMOD) $(UNITTESTINTERPRETER)
 	$(PYTHONTESTMOD) $(INTEGRATIONTESTALLMOD)
 
-.PHONY: format # Run Python Black formatter
+.PHONY: format # run Python Black formatter
 format:
-	fd --type f -e py | xargs black
+	fd --type f -e py | xargs $(FORMATTER)

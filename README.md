@@ -8,6 +8,14 @@ A simple math expression interpreter written in Python for learning purposes.
 
 - **Interpreter**: interprets the AST on the fly (without compiling it) and produces the result of the mathematical expression.
 
+```mermaid
+flowchart LR;
+  Input([input]) --> Lexer;
+  Lexer -- tokens --> Parser;
+  Parser -- AST --> Interpreter;
+  Interpreter --> Output([output]);
+```
+
 ## Execute the program
 ### Main (executes an example)
 ```bash
